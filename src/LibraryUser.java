@@ -1,4 +1,4 @@
-public class LibraryUser {
+public class LibraryUser extends LibraryEntity {
     private String name;
     private int id;
 
@@ -13,7 +13,13 @@ public class LibraryUser {
         this.id = id;
     }
 
-    public String getValues() {
-        return this.name + " (" + this.id + ")";
+    @Override
+    public String getDetails() {
+        return name + " (ID: " + id + ")";
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + id;
     }
 }
