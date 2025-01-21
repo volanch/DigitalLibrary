@@ -1,3 +1,5 @@
+package Entity;
+
 public abstract class LibraryEntity {
 
     public abstract String getDetails();

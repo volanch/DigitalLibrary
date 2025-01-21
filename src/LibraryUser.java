@@ -1,3 +1,5 @@
+import Entity.LibraryEntity;
+
 public class LibraryUser extends LibraryEntity {
     private String name;
     private int id;

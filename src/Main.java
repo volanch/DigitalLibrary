@@ -1,12 +1,20 @@
+import Entity.Book;
+import Controller.BookController;
+import Data.PostgresDB;
+import Data.Interface.IDB;
+import Repository.BooksRepository;
+import Repository.Interface.IBooksRepository;
+
 public class Main {
     public static void main(String[] args) {
-        Book book1 = new Book("Death on the Nile", "Agatha Christie", 1937);
-        Book book2 = new Book("1984", "George Orwell", 1949);
-        Book book3 = new Book("It", "Stephen King", 1986);
-        Book book4 = new Book("Animal Farm", "George Orwell", 1949);
+
+        Book book1 = new Book(1, "Death on the Nile", "Agatha Christie", 1937);
+        Book book2 = new Book(2, "1984", "George Orwell", 1949);
+        Book book3 = new Book(3, "It", "Stephen King", 1986);
+        Book book4 = new Book(4, "Animal Farm", "George Orwell", 1949);
 
 
-        System.out.println("Book Details:");
+        System.out.println("Entity.Book Details:");
         System.out.println(book1.getDetails());
         System.out.println(book2.getDetails());
         System.out.println(book3.getDetails());
@@ -49,5 +57,12 @@ public class Main {
         System.out.println("Comparing books one and four by year of publication: " + book1.equals(book4));
 
         System.out.println(book1.hashCode());
+
+
+        IDB db = new PostgresDB();
+        IBooksRepository repo = new BooksRepository(db);
+        BookController controller = new BookController(repo);
+        App app = new App(controller);
+        app.start();
     }
 }
